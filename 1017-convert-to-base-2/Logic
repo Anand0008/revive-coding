@@ -1,0 +1,14 @@
+For any base conversion, if its a +ve base number
+  a) rem = rem % base
+  b) n = n / base
+  c) loop till n != 0
+
+if its a -ve base number,
+  a) loop till n != 0
+  b) rem = rem % base
+  c) n = n / base
+      d) if rem < 0:
+            Rem = rem + abs(base)
+            N = N + 1
+
+
