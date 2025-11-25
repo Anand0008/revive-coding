@@ -1,16 +1,16 @@
 class Solution:
     def reverse(self, x: int) -> int:
-        neg = 0
+        neg=False
         if x<0:
-            neg=1
+            neg=True
             x=abs(x)
-        ans =0
-        while(x!=0):
-            temp=x%10
-            if (ans <(-2**31//10) or ans > ((2**31-1)//10)): return 0
-            ans = ans *10 + temp
-            x = x//10
-        if neg:
-            return 0-ans
+        y = str(x)
+        y=y[::-1]
+        ans = int(y)
+        
+        if neg: ans = -ans
+        if ((ans < -2**31) or (ans > 2**31-1)): return 0
         else: return ans
+        
+
         
