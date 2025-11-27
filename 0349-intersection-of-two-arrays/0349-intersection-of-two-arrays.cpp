@@ -1,26 +1,26 @@
+#include<vector>
 class Solution {
 public:
     vector<int> intersection(vector<int>& nums1, vector<int>& nums2) {
-        set<int> ans;
-        int i=0;
-        int j=0;
-        for (i=0;i<nums1.size();i++) {
-            for (j=0;j<nums2.size();j++){
-                if(nums1[i]==nums2[j]){
-                    ans.insert(nums1[i]);
-                
-            }
-            
-                
-
+        set<int> nu1;
+        set<int> nu2;
+        for (int val : nums1){
+            nu1.insert(val);
 
         }
+        for (int val : nums2){
+            nu2.insert(val);
+
         }
-        vector<int> finale;
-        for (int val:ans){
-            finale.push_back(val);
-        }
-        return finale;
+        vector<int> ans;
+        set_intersection(nu1.begin(),nu1.end(),
+                            nu2.begin(),nu2.end(),
+                            back_inserter(ans));
+        return ans;
+        
+
+
+        
         
         
     }
