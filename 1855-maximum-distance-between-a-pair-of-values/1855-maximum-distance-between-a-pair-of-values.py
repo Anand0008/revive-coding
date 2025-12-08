@@ -1,16 +1,20 @@
 class Solution:
     def maxDistance(self, nums1: List[int], nums2: List[int]) -> int:
-        i = j = 0
-        n1, n2 = len(nums1), len(nums2)
-        ans = 0
-        
-        while i < n1 and j < n2:
-            if nums1[i] <= nums2[j]:
-                ans = max(ans, j - i)
-                j += 1
+        i=j=0
+        maxi = 0
+        while(i<len(nums1) and j<len(nums2)):
+            if nums1[i]<=nums2[j]:
+                maxi = max(maxi,j - i)
+                
+                j+=1
             else:
-                i += 1
-                if i > j:
-                    j = i
+                i+=1
+                j+=1
+        while(j<len(nums2)):
+            if i-1 <= j and nums1[i-1]<=nums2[j]:
+                maxi = max(maxi,j - (i-1))
+                
+                j+=1
+        return maxi
+
         
-        return ans
