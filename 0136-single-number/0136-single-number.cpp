@@ -1,10 +1,12 @@
 class Solution {
 public:
+int ans=0;
     int singleNumber(vector<int>& nums) {
-        int ans = 0;
-        for (int x : nums) {
-            ans ^= x;   // XOR all numbers
+        for(int i=0;i<nums.size();i++){
+            ans = ans ^ nums[i];
+
         }
         return ans;
+        
     }
 };
