@@ -1,30 +1,23 @@
 class Solution {
 public:
     bool isValid(string s) {
-        vector<char> stack;
+        stack<char> st;
+        unordered_map<char,char> mp = {
+            {')', '('},
+            {'}', '{'},
+            {']', '['}
+        };
 
-        for (char i : s) {
-            if (stack.empty() || i == '(' || i == '{' || i == '[') {
-                stack.push_back(i);
-            }
-
-            if (!stack.empty() && stack.back() == '(' && i == ')') {
-                stack.pop_back();
-            }
-            else if (!stack.empty() && stack.back() == '{' && i == '}') {
-                stack.pop_back();
-            }
-            else if (!stack.empty() && stack.back() == '[' && i == ']') {
-                stack.pop_back();
-            }
-            else if (i == ')' || i == '}' || i == ']') {
-                stack.push_back(i);
+        for (char c : s) {
+            if (mp.find(c) != mp.end()) {
+                if (st.empty() || st.top() != mp[c])
+                    return false;
+                st.pop();
+            } else {
+                st.push(c);
             }
         }
 
-        if (stack.empty())
-            return true;
-        else
-            return false;
+        return st.empty();
     }
 };
