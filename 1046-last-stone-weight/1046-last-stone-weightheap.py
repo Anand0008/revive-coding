@@ -1,14 +1,16 @@
+import heapq
+
 class Solution:
     def lastStoneWeight(self, stones: List[int]) -> int:
+        # Python heapq is a MIN heap, so negate values
+        stones = [-s for s in stones]
+        heapq.heapify(stones)
+
         while len(stones) > 1:
-            stones.sort()
+            x = -heapq.heappop(stones)
+            y = -heapq.heappop(stones)
 
-            largest = stones[-1]
-            second_largest = stones[-2]
+            if x != y:
+                heapq.heappush(stones, -(x - y))
 
-            stones = stones[:-2]
-
-            if largest != second_largest:
-                stones.append(largest - second_largest)
-
-        return stones[0] if stones else 0
+        return -stones[0] if stones else 0
